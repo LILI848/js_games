@@ -18,12 +18,31 @@ cardArray.sort(() => 0.5 - Math.random());
 const gridDisplay = document.querySelector("#grid");
 
 function createBoard() {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < cardArray.length; i++) {
     const card = document.createElement("img");
     card.setAttribute("src", "./images/blank.png");
     card.setAttribute("data-id", i);
+    card.addEventListener("click", flipCard);
+
     gridDisplay.append(card);
   }
 }
 
 createBoard();
+
+/* function flipCard() {
+  for (let i = 0; i < cardArray.length; i++) {
+    const eachCard = document.getElementById(i);
+    eachCard.addEventListener("click", () => {
+      const cardId = eachCard.getAttribute("id");
+      console.log("clicked", cardId);
+    });
+  }
+}
+flipCard();
+ */
+
+function flipCard() {
+  const cardId = this.getAttribute("data-id");
+  console.log("clicked", cardId);
+}
