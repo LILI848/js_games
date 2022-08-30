@@ -25,3 +25,4 @@ function endMoveMole() {
 
 btnStart.addEventListener("click", moveMole);
 btnEnd.addEventListener("click", endMoveMole);
+//
