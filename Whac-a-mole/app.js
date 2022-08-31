@@ -6,6 +6,7 @@ const btnStart = document.querySelector("#start-btn");
 const btnEnd = document.querySelector("#end-btn");
 let hitPosition;
 let result = 0;
+let currentTimer = 10;
 function randomSquare() {
   squares.forEach((square) => {
     square.classList.remove("mole");
@@ -26,15 +27,30 @@ squares.forEach((square) =>
 );
 
 let timeId;
+let countDownTimerId;
 function moveMole() {
   timeId = null;
   timeId = setInterval(randomSquare, 500);
+  countDownTimerId = setInterval(() => {
+    currentTimer--;
+    timeLeft.innerHTML = currentTimer;
+    if (currentTimer === 0) {
+      clearInterval(countDownTimerId);
+      clearInterval(timeId);
+
+      alert("Final score is " + result + " !");
+    }
+  }, 1000);
 }
 
 function endMoveMole() {
   clearInterval(timeId);
   timeId = null;
   squares.forEach((square) => square.classList.remove("mole"));
+  clearInterval(countDownTimerId);
+  currentTimer = 10;
+  timeLeft.innerHTML = currentTimer;
+  result = 0;
 }
 
 btnStart.addEventListener("click", moveMole);
