@@ -14,5 +14,6 @@
 }
 
 .mole {
-  background-color: blue;
+  background-image: url("leaf2.png");
+  background-size: cover;
 }
