@@ -1,6 +1,9 @@
 const grid = document.querySelector(".grid");
 const blockWidth = 100;
 const blockHeight = 20;
+
+let userPosition = [230, 10];
+let userMovePosition = userPosition;
 class Block {
   constructor(xAxis, yAxis) {
     this.bottomLeft = [xAxis, yAxis];
@@ -40,3 +43,27 @@ function addBlocks() {
 }
 
 addBlocks();
+
+const user = document.createElement("div");
+user.classList.add("user");
+setUserPosition();
+grid.appendChild(user);
+
+function setUserPosition() {
+  user.style.bottom = userMovePosition[1] + "px";
+  user.style.left = userMovePosition[0] + "px";
+}
+
+function moveUser(event) {
+  switch (event.key) {
+    case "ArrowLeft":
+      userPosition[0] -= 10;
+      setUserPosition();
+      break;
+
+    default:
+      break;
+  }
+}
+
+document.addEventListener("keydown", moveUser);
