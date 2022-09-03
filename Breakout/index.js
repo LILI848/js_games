@@ -57,9 +57,17 @@ function setUserPosition() {
 function moveUser(event) {
   switch (event.key) {
     case "ArrowLeft":
-      userPosition[0] -= 10;
-      setUserPosition();
+      if (userPosition[0] > 0) {
+        userPosition[0] -= 10;
+        setUserPosition();
+      }
+
       break;
+    case "ArrowRight":
+      if (userPosition[0] < 460) {
+        userPosition[0] += 10;
+        setUserPosition();
+      }
 
     default:
       break;
