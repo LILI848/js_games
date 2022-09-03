@@ -1,12 +1,21 @@
 const grid = document.querySelector(".grid");
+const score = document.querySelector(".score");
+score.innerHTML = 0;
+
 const blockWidth = 100;
 const blockHeight = 20;
 const boardWidth = 560;
+const boardHeight = 300;
+
 let userStartPosition = [230, 10];
 let userCurrentPosition = userStartPosition;
 
 let ballStart = [270, 40];
 let ballCurrentPosition = ballStart;
+let ballDiameter = 20;
+let timeId;
+let xDirection = -2;
+let yDirection = 2;
 class Block {
   constructor(xAxis, yAxis) {
     this.bottomLeft = [xAxis, yAxis];
@@ -88,3 +97,46 @@ const ball = document.createElement("div");
 ball.classList.add("ball");
 setBallPosition();
 grid.appendChild(ball);
+
+function moveBall() {
+  ballCurrentPosition[0] += xDirection;
+  ballCurrentPosition[1] += yDirection;
+  setBallPosition();
+  checkForCollisions();
+  checkForLose();
+}
+
+timeId = setInterval(moveBall, 30);
+
+function checkForCollisions() {
+  if (
+    ballCurrentPosition[0] >= boardWidth - ballDiameter ||
+    ballCurrentPosition[1] >= boardHeight - ballDiameter ||
+    ballCurrentPosition[0] <= 0
+  )
+    changeDirection();
+}
+
+function changeDirection() {
+  if (xDirection === 2 && yDirection === 2) {
+    xDirection = -2;
+    return;
+  } else if (xDirection === -2 && yDirection === 2) {
+    yDirection = -2;
+    return;
+  } else if (xDirection === -2 && yDirection === -2) {
+    xDirection = 2;
+    return;
+  } else if (xDirection === 2 && yDirection === -2) {
+    yDirection = 2;
+    return;
+  }
+}
+
+function checkForLose() {
+  if (ballCurrentPosition[1] <= 0) {
+    clearInterval(timeId);
+    score.innerHTML = "You lose!";
+    document.removeEventListener("keydown", moveBall);
+  }
+}
