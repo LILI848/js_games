@@ -1,9 +1,12 @@
 const grid = document.querySelector(".grid");
 const blockWidth = 100;
 const blockHeight = 20;
+const boardWidth = 560;
+let userStartPosition = [230, 10];
+let userCurrentPosition = userStartPosition;
 
-let userPosition = [230, 10];
-let userMovePosition = userPosition;
+let ballStart = [270, 40];
+let ballCurrentPosition = ballStart;
 class Block {
   constructor(xAxis, yAxis) {
     this.bottomLeft = [xAxis, yAxis];
@@ -50,22 +53,22 @@ setUserPosition();
 grid.appendChild(user);
 
 function setUserPosition() {
-  user.style.bottom = userMovePosition[1] + "px";
-  user.style.left = userMovePosition[0] + "px";
+  user.style.bottom = userCurrentPosition[1] + "px";
+  user.style.left = userCurrentPosition[0] + "px";
 }
 
 function moveUser(event) {
   switch (event.key) {
     case "ArrowLeft":
-      if (userPosition[0] > 0) {
-        userPosition[0] -= 10;
+      if (userCurrentPosition[0] > 0) {
+        userCurrentPosition[0] -= 10;
         setUserPosition();
       }
 
       break;
     case "ArrowRight":
-      if (userPosition[0] < 460) {
-        userPosition[0] += 10;
+      if (userCurrentPosition[0] < boardWidth - blockWidth) {
+        userCurrentPosition[0] += 10;
         setUserPosition();
       }
 
@@ -75,3 +78,13 @@ function moveUser(event) {
 }
 
 document.addEventListener("keydown", moveUser);
+
+function setBallPosition() {
+  ball.style.left = ballCurrentPosition[0] + "px";
+  ball.style.bottom = ballCurrentPosition[1] + "px";
+}
+
+const ball = document.createElement("div");
+ball.classList.add("ball");
+setBallPosition();
+grid.appendChild(ball);
