@@ -1,12 +1,13 @@
 const grid = document.querySelector(".grid");
 const score = document.querySelector(".score");
-score.innerHTML = 0;
 
 const blockWidth = 100;
 const blockHeight = 20;
 const boardWidth = 560;
 const boardHeight = 300;
 
+let scoreNum = 0;
+score.innerHTML = scoreNum;
 let userStartPosition = [230, 10];
 let userCurrentPosition = userStartPosition;
 
@@ -21,7 +22,7 @@ class Block {
     this.bottomLeft = [xAxis, yAxis];
     this.bottomRight = [xAxis + blockWidth, yAxis];
     this.topLeft = [xAxis, yAxis + blockHeight];
-    this.toRight = [xAxis + blockWidth, yAxis + blockHeight];
+    this.topRight = [xAxis + blockWidth, yAxis + blockHeight];
   }
 }
 
@@ -109,6 +110,23 @@ function moveBall() {
 timeId = setInterval(moveBall, 30);
 
 function checkForCollisions() {
+  // check for block collisions
+  for (let i = 0; i < blocks.length; i++) {
+    if (
+      ballCurrentPosition[0] > blocks[i].bottomLeft[0] &&
+      ballCurrentPosition[0] < blocks[i].bottomRight[0] &&
+      ballCurrentPosition[1] + ballDiameter > blocks[i].bottomLeft[1] &&
+      ballCurrentPosition[1] < blocks[i].topLeft[1]
+    ) {
+      let allBlocks = Array.from(document.querySelectorAll(".block"));
+      allBlocks[i].classList.remove("block");
+      blocks.splice(i, 1);
+      scoreNum++;
+      score.innerHTML = scoreNum;
+    }
+  }
+
+  //check for wall collisions
   if (
     ballCurrentPosition[0] >= boardWidth - ballDiameter ||
     ballCurrentPosition[1] >= boardHeight - ballDiameter ||
