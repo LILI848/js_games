@@ -131,8 +131,20 @@ function checkForCollisions() {
     ballCurrentPosition[0] >= boardWidth - ballDiameter ||
     ballCurrentPosition[1] >= boardHeight - ballDiameter ||
     ballCurrentPosition[0] <= 0
-  )
+  ) {
     changeDirection();
+  }
+
+  //check for user collisions
+
+  if (
+    ballCurrentPosition[0] > userCurrentPosition[0] &&
+    ballCurrentPosition[0] < userCurrentPosition[0] + blockWidth &&
+    ballCurrentPosition[1] < userCurrentPosition[1] + blockHeight &&
+    ballCurrentPosition[1] > userCurrentPosition[1]
+  ) {
+    changeDirection();
+  }
 }
 
 function changeDirection() {
