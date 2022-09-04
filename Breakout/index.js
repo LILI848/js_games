@@ -123,6 +123,7 @@ function checkForCollisions() {
       blocks.splice(i, 1);
       scoreNum++;
       score.innerHTML = scoreNum;
+      checkForWin();
     }
   }
 
@@ -167,6 +168,14 @@ function checkForLose() {
   if (ballCurrentPosition[1] <= 0) {
     clearInterval(timeId);
     score.innerHTML = "You lose!";
-    document.removeEventListener("keydown", moveBall);
+    document.removeEventListener("keydown", moveUser);
+  }
+}
+
+function checkForWin() {
+  if (blocks.length === 0) {
+    clearInterval(timeId);
+    score.innerHTML = "You win!";
+    document.removeEventListener("keydown", moveUser);
   }
 }
