@@ -1,5 +1,9 @@
 const gridDisplay = document.querySelector(".grid");
 
+const timeLeftDisplay = document.querySelector("#time-left");
+const resultDisplay = document.querySelector("#result");
+const startPauseButton = document.querySelector("#start-pause-button");
+
 for (let i = 0; i <= 80; i++) {
   const divDisplay = document.createElement("div");
   gridDisplay.append(divDisplay);
@@ -25,3 +29,12 @@ function setDivAttribute() {
 }
 
 setDivAttribute();
+
+const squares = document.querySelectorAll(".grid div");
+let currentIndex = 0;
+console.log(squares);
+function moveFrog() {
+  squares[currentIndex].classList.add("frog");
+}
+
+document.addEventListener("keyup", moveFrog);
