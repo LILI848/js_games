@@ -32,20 +32,28 @@ setDivAttribute();
 
 const squares = document.querySelectorAll(".grid div");
 let currentIndex = 76;
+let width = 9;
+
+squares[currentIndex].classList.add("frog");
 
 function moveFrog(event) {
+  squares[currentIndex].classList.remove("frog");
   switch (event.key) {
     case "ArrowLeft":
       console.log("left");
+      currentIndex -= 1;
       break;
     case "ArrowRight":
       console.log("right");
+      currentIndex += 1;
       break;
     case "ArrowUp":
       console.log("up");
+      currentIndex -= width;
       break;
     case "ArrowDown":
       console.log("down");
+      currentIndex += width;
       break;
     default:
       break;
