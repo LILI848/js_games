@@ -40,20 +40,17 @@ function moveFrog(event) {
   squares[currentIndex].classList.remove("frog");
   switch (event.key) {
     case "ArrowLeft":
-      console.log("left");
-      currentIndex -= 1;
+      if (currentIndex % width !== 0) currentIndex -= 1;
       break;
     case "ArrowRight":
-      console.log("right");
-      currentIndex += 1;
+      if (currentIndex % width < width - 1) currentIndex += 1;
       break;
     case "ArrowUp":
-      console.log("up");
-      currentIndex -= width;
+      if (currentIndex - width >= 0) currentIndex -= width;
       break;
     case "ArrowDown":
-      console.log("down");
-      currentIndex += width;
+      if (currentIndex + width < width * width) currentIndex += width;
+
       break;
     default:
       break;
