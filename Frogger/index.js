@@ -5,6 +5,7 @@ const resultDisplay = document.querySelector("#result");
 const startPauseButton = document.querySelector("#start-pause-button");
 
 let divArr = [];
+let carArr = [];
 
 for (let i = 0; i <= 80; i++) {
   const divDisplay = document.createElement("div");
@@ -31,6 +32,9 @@ function setDivAttribute() {
   for (let i = 19; i <= 36; i++) {
     divArr.push(divs[i]);
   }
+  for (let i = 46; i <= 63; i++) {
+    carArr.push(divs[i]);
+  }
 }
 
 setDivAttribute();
@@ -48,19 +52,18 @@ function groupArr(data, num) {
   return group;
 }
 let groupDivs = groupArr(divArr, 5);
+let groupCars = groupArr(carArr, 3);
 
-console.log(divArr);
-console.log(groupDivs);
+console.log(carArr);
+console.log(groupCars);
 
-console.log(divArr[1]);
-
-function addClass(arr) {
+function addClassLog(arr) {
   let newDiv = [];
 
   for (let i = 0; i < arr.length; i++) {
     newDiv = arr[i].map((div) => {
       let indexOfDiv = arr[i].indexOf(div) + 1;
-      console.log(indexOfDiv);
+
       div.classList.add(`l${indexOfDiv}`);
 
       return div;
@@ -71,12 +74,27 @@ function addClass(arr) {
   return newDiv;
 }
 
-let addClassDivs = addClass(groupDivs);
-console.log(addClassDivs);
+let addClassDivs = addClassLog(groupDivs);
 
-console.log(document.querySelectorAll(".l1"));
+function addClassCar(arr) {
+  let newDiv = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    newDiv = arr[i].map((div) => {
+      let indexOfDiv = arr[i].indexOf(div) + 1;
+
+      div.classList.add(`c${indexOfDiv}`);
+
+      return div;
+    });
+  }
+  return newDiv;
+}
+let addClassCars = addClassCar(groupCars);
+console.log(addClassCars);
 
 const squares = document.querySelectorAll(".grid div");
+const logsLeft = document.querySelectorAll(".log-left");
 let currentIndex = 76;
 let width = 9;
 
@@ -105,3 +123,16 @@ function moveFrog(event) {
 }
 
 document.addEventListener("keyup", moveFrog);
+
+function autoMoveLogs() {
+  logsLeft.forEach((logLeft) => moveLogsLeft(logLeft));
+}
+
+function moveLogsLeft(logLeft) {
+  switch (true) {
+    case logLeft.classList.contains("l1"):
+      logLeft.classList.remove("l1");
+      logLeft.classList.add("l2");
+      break;
+  }
+}
