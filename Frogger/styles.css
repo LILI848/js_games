@@ -32,3 +32,39 @@
 .frog {
   background-color: aquamarine;
 }
+
+div.log-left.l1 {
+  background-color: blueviolet;
+}
+div.log-left.l2 {
+  background-color: blueviolet;
+}
+div.log-left.l3 {
+  background-color: blueviolet;
+}
+
+div.log-left.l4 {
+  background-color: burlywood;
+}
+
+div.log-left.l5 {
+  background-color: burlywood;
+}
+
+div.log-right.l1 {
+  background-color: blueviolet;
+}
+div.log-right.l2 {
+  background-color: blueviolet;
+}
+div.log-right.l3 {
+  background-color: blueviolet;
+}
+
+div.log-right.l4 {
+  background-color: burlywood;
+}
+
+div.log-right.l5 {
+  background-color: burlywood;
+}
