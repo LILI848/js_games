@@ -68,3 +68,23 @@ div.log-right.l4 {
 div.log-right.l5 {
   background-color: burlywood;
 }
+
+div.car-left.c1 {
+  background-color: gold;
+}
+div.car-left.c2 {
+  background-color: lightpink;
+}
+div.car-left.c3 {
+  background-color: lightpink;
+}
+
+div.car-right.c1 {
+  background-color: gold;
+}
+div.car-right.c2 {
+  background-color: lightpink;
+}
+div.car-right.c3 {
+  background-color: lightpink;
+}
