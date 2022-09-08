@@ -95,6 +95,7 @@ console.log(addClassCars);
 
 const squares = document.querySelectorAll(".grid div");
 const logsLeft = document.querySelectorAll(".log-left");
+const logsRight = document.querySelectorAll(".log-right");
 let currentIndex = 76;
 let width = 9;
 
@@ -126,6 +127,7 @@ document.addEventListener("keyup", moveFrog);
 
 function autoMoveLogs() {
   logsLeft.forEach((logLeft) => moveLogsLeft(logLeft));
+  logsRight.forEach((logRight) => moveLogsRight(logRight));
 }
 
 function moveLogsLeft(logLeft) {
@@ -149,6 +151,30 @@ function moveLogsLeft(logLeft) {
     case logLeft.classList.contains("l5"):
       logLeft.classList.remove("l5");
       logLeft.classList.add("l1");
+      break;
+  }
+}
+function moveLogsRight(logRight) {
+  switch (true) {
+    case logRight.classList.contains("l5"):
+      logRight.classList.remove("l5");
+      logRight.classList.add("l4");
+      break;
+    case logRight.classList.contains("l4"):
+      logRight.classList.remove("l4");
+      logRight.classList.add("l3");
+      break;
+    case logRight.classList.contains("l3"):
+      logRight.classList.remove("l3");
+      logRight.classList.add("l2");
+      break;
+    case logRight.classList.contains("l2"):
+      logRight.classList.remove("l2");
+      logRight.classList.add("l1");
+      break;
+    case logRight.classList.contains("l1"):
+      logRight.classList.remove("l1");
+      logRight.classList.add("l5");
       break;
   }
 }
