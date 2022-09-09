@@ -128,6 +128,7 @@ function autoMoveElements() {
   carsLeft.forEach((carLeft) => moveCarsLeft(carLeft));
   carsRight.forEach((carRight) => moveCarsRight(carRight));
   lose();
+  win();
 }
 
 function moveLogsLeft(logLeft) {
@@ -213,9 +214,21 @@ function moveCarsRight(carRight) {
 }
 
 function lose() {
-  if (squares[currentIndex].classList.contains("c1")) {
+  if (
+    squares[currentIndex].classList.contains("c1") ||
+    squares[currentIndex].classList.contains("l4") ||
+    squares[currentIndex].classList.contains("l5")
+  ) {
     resultDisplay.textContent = "You lose!";
     squares[currentIndex].classList.remove("frog");
+    clearInterval(timerId);
+    document.removeEventListener("keyup", moveFrog);
+  }
+}
+function win() {
+  if (squares[currentIndex].classList.contains("ending-block")) {
+    resultDisplay.textContent = "You win!";
+
     clearInterval(timerId);
     document.removeEventListener("keyup", moveFrog);
   }
