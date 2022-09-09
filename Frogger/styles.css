@@ -29,10 +29,6 @@
   background-color: antiquewhite;
 }
 
-.frog {
-  background-color: aquamarine;
-}
-
 div.log-left.l1 {
   background-color: blueviolet;
 }
@@ -87,4 +83,24 @@ div.car-right.c2 {
 }
 div.car-right.c3 {
   background-color: lightpink;
+}
+
+.frog {
+  background-color: aquamarine;
+}
+
+div.car-right.frog {
+  background-color: aquamarine;
+}
+
+div.car-left.frog {
+  background-color: aquamarine;
+}
+
+div.log-left.frog {
+  background-color: aquamarine;
+}
+
+div.log-right.frog {
+  background-color: aquamarine;
 }

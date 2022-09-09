@@ -54,9 +54,6 @@ function groupArr(data, num) {
 let groupDivs = groupArr(divArr, 5);
 let groupCars = groupArr(carArr, 3);
 
-console.log(carArr);
-console.log(groupCars);
-
 function addClassLog(arr) {
   let newDiv = [];
 
@@ -68,8 +65,6 @@ function addClassLog(arr) {
 
       return div;
     });
-
-    console.log(newDiv);
   }
   return newDiv;
 }
@@ -91,7 +86,6 @@ function addClassCar(arr) {
   return newDiv;
 }
 let addClassCars = addClassCar(groupCars);
-console.log(addClassCars);
 
 const squares = document.querySelectorAll(".grid div");
 const logsLeft = document.querySelectorAll(".log-left");
@@ -100,6 +94,7 @@ const carsLeft = document.querySelectorAll(".car-left");
 const carsRight = document.querySelectorAll(".car-right");
 let currentIndex = 76;
 let width = 9;
+let timerId;
 
 squares[currentIndex].classList.add("frog");
 
@@ -127,9 +122,12 @@ function moveFrog(event) {
 
 document.addEventListener("keyup", moveFrog);
 
-function autoMoveLogs() {
+function autoMoveElements() {
   logsLeft.forEach((logLeft) => moveLogsLeft(logLeft));
   logsRight.forEach((logRight) => moveLogsRight(logRight));
+  carsLeft.forEach((carLeft) => moveCarsLeft(carLeft));
+  carsRight.forEach((carRight) => moveCarsRight(carRight));
+  lose();
 }
 
 function moveLogsLeft(logLeft) {
@@ -181,13 +179,6 @@ function moveLogsRight(logRight) {
   }
 }
 
-let timeId = setInterval(autoMoveLogs, 1000);
-clearInterval(timeId);
-
-function autoMoveCars() {
-  carsLeft.forEach((carLeft) => moveCarsLeft(carLeft));
-  carsRight.forEach((carRight) => moveCarsRight(carRight));
-}
 function moveCarsLeft(carLeft) {
   switch (true) {
     case carLeft.classList.contains("c1"):
@@ -221,5 +212,13 @@ function moveCarsRight(carRight) {
   }
 }
 
-let timeId2 = setInterval(autoMoveCars, 1000);
-clearInterval(timeId2);
+function lose() {
+  if (squares[currentIndex].classList.contains("c1")) {
+    resultDisplay.textContent = "You lose!";
+    squares[currentIndex].classList.remove("frog");
+    clearInterval(timerId);
+    document.removeEventListener("keyup", moveFrog);
+  }
+}
+
+timerId = setInterval(autoMoveElements, 1000);
