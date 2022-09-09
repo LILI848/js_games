@@ -3,7 +3,8 @@ const gridDisplay = document.querySelector(".grid");
 const timeLeftDisplay = document.querySelector("#time-left");
 const resultDisplay = document.querySelector("#result");
 const startPauseButton = document.querySelector("#start-pause-button");
-
+let currentTime = 20;
+timeLeftDisplay.textContent = currentTime;
 let divArr = [];
 let carArr = [];
 
@@ -123,6 +124,8 @@ function moveFrog(event) {
 document.addEventListener("keyup", moveFrog);
 
 function autoMoveElements() {
+  currentTime--;
+  timeLeftDisplay.textContent = currentTime;
   logsLeft.forEach((logLeft) => moveLogsLeft(logLeft));
   logsRight.forEach((logRight) => moveLogsRight(logRight));
   carsLeft.forEach((carLeft) => moveCarsLeft(carLeft));
@@ -217,7 +220,8 @@ function lose() {
   if (
     squares[currentIndex].classList.contains("c1") ||
     squares[currentIndex].classList.contains("l4") ||
-    squares[currentIndex].classList.contains("l5")
+    squares[currentIndex].classList.contains("l5") ||
+    currentTime <= 0
   ) {
     resultDisplay.textContent = "You lose!";
     squares[currentIndex].classList.remove("frog");
