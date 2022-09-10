@@ -5,6 +5,6 @@ for (let i = 0; i < 48; i++) {
 }
 
 let divs = document.querySelectorAll("div");
-for (let j = 41; j < 48; j++) {
+for (let j = 42; j <= 48; j++) {
   divs[j].setAttribute("class", "taken");
 }
