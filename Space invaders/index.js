@@ -14,6 +14,8 @@ let squares = Array.from(document.querySelectorAll(".grid div"));
 let currentShooterIndex = 202;
 let width = 15;
 let direction = 1;
+let goingRight = true;
+
 function draw() {
   for (let i = 0; i < alienInvaders.length; i++) {
     squares[alienInvaders[i]].classList.add("invader");
@@ -48,13 +50,27 @@ function moveInvaders() {
   const leftEdge = alienInvaders[0] % width === 0;
   const rightEdge =
     alienInvaders[alienInvaders.length - 1] % width === width - 1;
-  remove();
 
+  remove();
+  if (rightEdge && goingRight) {
+    for (let i = 0; i < alienInvaders.length; i++) {
+      alienInvaders[i] += width + 1;
+      direction = -1;
+      goingRight = false;
+    }
+  }
+  if (leftEdge && !goingRight) {
+    for (let i = 0; i < alienInvaders.length; i++) {
+      alienInvaders[i] += width - 1;
+      direction = 1;
+      goingRight = true;
+    }
+  }
   for (let i = 0; i < alienInvaders.length; i++) {
     alienInvaders[i] += direction;
   }
   draw();
 }
 
-let timerId = setInterval(moveInvaders, 500);
-clearInterval(timerId);
+let invadersId = setInterval(moveInvaders, 500);
+clearInterval(invadersId);
