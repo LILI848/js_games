@@ -76,6 +76,12 @@ function moveInvaders() {
     resultDisplay.innerHTML = "GAME OVER";
     clearInterval(invadersId);
   }
+  for (let i = 0; i < alienInvaders.length; i++) {
+    if (alienInvaders[i] > squares.length) {
+      resultDisplay.innerHTML = "GAME OVER";
+      clearInterval(invadersId);
+    }
+  }
 }
 
 let invadersId = setInterval(moveInvaders, 100);
