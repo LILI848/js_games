@@ -16,6 +16,7 @@ let currentShooterIndex = 202;
 let width = 15;
 let direction = 1;
 let goingRight = true;
+let aliensRemoved = [];
 
 function draw() {
   for (let i = 0; i < alienInvaders.length; i++) {
@@ -98,6 +99,11 @@ function shoot(event) {
       squares[currentLaserIndex].classList.remove("invader");
       squares[currentLaserIndex].classList.remove("laser");
       squares[currentLaserIndex].classList.add("boom");
+
+      setTimeout(() => {
+        squares[currentLaserIndex].classList.remove("boom");
+      }, 300);
+      clearInterval(laserId);
     }
   }
   switch (event.key) {
